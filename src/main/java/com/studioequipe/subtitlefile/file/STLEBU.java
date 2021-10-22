@@ -59,6 +59,8 @@ public class STLEBU extends ISousTitre {
       if (afficher) {
         System.out.println("DFC : " + framerate);
       }
+      framerate= framerate.substring(3, 5);
+      
       this.sous_titre.setFramerate(framerate);
 
       // DSC :
@@ -274,7 +276,7 @@ public class STLEBU extends ISousTitre {
         ligne.setTexte(texte);
         affichage += texte;
 
-        if (afficher) {
+        if (!afficher) {
           System.out.println(affichage);
         }
         out.write(affichage + "\n");
@@ -404,19 +406,19 @@ public class STLEBU extends ISousTitre {
         return " ";
 
       case "1":
-        return "<span style='color:red'>";
+        return "<color:red>";
       case "2":
-        return "<span style='color:green'>";
+        return "<color:green>";
       case "3":
-        return "<span style='color:yellow'>";
+        return "<color:yellow>";
       case "4":
-        return "<span style='color:blue'>";
+        return "<color:blue>";
       case "5":
-        return "<span style='color:magenta'>";
+        return "<color:magenta>";
       case "6":
-        return "<span style='color:cyn'>";
+        return "<color:cyn>";
       case "7":
-        return "<span style='color:white'>";
+        return "<color:white>";
 
       case "20":
         return " ";
