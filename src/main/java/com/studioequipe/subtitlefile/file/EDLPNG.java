@@ -7,25 +7,15 @@ import com.studioequipe.subtitlefile.SousTitre;
 import ij.IJ;
 import ij.ImagePlus;
 import ij.io.FileSaver;
-import ij.process.ColorProcessor;
 import ij.process.ImageProcessor;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.font.FontRenderContext;
-import java.awt.font.TextLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.awt.geom.*;
-import java.awt.image.BufferedImage;
 import java.util.Scanner;
 
 /**
@@ -36,9 +26,11 @@ import java.util.Scanner;
  */
 public class EDLPNG extends ISousTitre {
 
-  private SousTitre sous_titre;
-
   public EDLPNG(SousTitre sous_titre) throws Exception {
+    if (sous_titre == null) {
+      throw new Exception("Les sous-titres sont null.");
+    }
+
     this.sous_titre = sous_titre;
 
     if (this.sous_titre.getFramerate() == null || this.sous_titre.getFramerate().equals("")) {
@@ -122,6 +114,16 @@ public class EDLPNG extends ISousTitre {
           int position_x = positionX(1920, texte, liste_ligne.get(i).getPosition(), image, font);
           //int a = metrics.getHeight() + metrics.getAscent();
 
+          ip.setColor(Color.BLACK);
+
+          int epaisseur_max = 2;
+
+          ip.drawString(texte, position_x - epaisseur_max, 1000 - epaisseur_max);
+          ip.drawString(texte, position_x - epaisseur_max, 1000 + epaisseur_max);
+          ip.drawString(texte, position_x + epaisseur_max, 1000 - epaisseur_max);
+          ip.drawString(texte, position_x + epaisseur_max, 1000 + epaisseur_max);
+
+          ip.setColor(Color.WHITE);
           ip.drawString(texte, position_x, 1000);
         } else {
           ip.setColor(Color.BLACK); // Par-défaut.

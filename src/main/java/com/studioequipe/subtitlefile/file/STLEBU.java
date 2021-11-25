@@ -59,8 +59,8 @@ public class STLEBU extends ISousTitre {
       if (afficher) {
         System.out.println("DFC : " + framerate);
       }
-      framerate= framerate.substring(3, 5);
-      
+      framerate = framerate.substring(3, 5);
+
       this.sous_titre.setFramerate(framerate);
 
       // DSC :
@@ -276,7 +276,7 @@ public class STLEBU extends ISousTitre {
         ligne.setTexte(texte);
         affichage += texte;
 
-        if (!afficher) {
+        if (afficher) {
           System.out.println(affichage);
         }
         out.write(affichage + "\n");
@@ -302,7 +302,14 @@ public class STLEBU extends ISousTitre {
   private static String decimalToHexa(byte[] a) {
     String texte = "";
     for (int i = 0; i < a.length; i++) {
-      texte += hexaToString(Integer.toHexString(a[i]));
+      String cara_2_octet[] = new String[]{"false"};
+
+      texte += hexaToString(Integer.toHexString(a[i]), a, i, cara_2_octet);
+
+      //System.out.println(cara_2_octet[0]);
+      if (cara_2_octet[0].equals("true")) {
+        i++;
+      }
     }
     return texte;
   }
@@ -400,7 +407,10 @@ public class STLEBU extends ISousTitre {
    * @param hexa
    * @return
    */
-  private static String hexaToString(String hexa) {
+  private static String hexaToString(String hexa, byte[] hexa_2, int i, String[] cara_2_octet) {
+
+    String cara;
+
     switch (hexa) {
       case "0":
         return " ";
@@ -572,6 +582,18 @@ public class STLEBU extends ISousTitre {
       case "7a":
         return "z";
 
+      case "3a":
+        return ":";
+
+      case "22":
+        return "\"";
+
+      case "25":
+        return "%";
+
+      case "2b":
+        return "+";
+
       case "ffffff8a":
         return "<br>";
 
@@ -583,9 +605,110 @@ public class STLEBU extends ISousTitre {
       case "ffffff81": // le "ffffff" ce n'est pas normal ...
         return "</i>";
 
+      case "fffffffa": // le "ffffff" ce n'est pas normal ...
+        return "Œ";
+
+      case "ffffffc3":
+        cara = hexaToString(Integer.toHexString(hexa_2[i + 1]), new byte[]{}, i, new String[]{""});
+
+        cara_2_octet[0] = "true";
+
+        switch (cara) {
+          case "a":
+            return "â";
+          case "A":
+            return "Â";
+          case "o":
+            return "ô";
+          case "e":
+            return "ê";
+          case "E":
+            return "Ê";
+          case "u":
+            return "û";
+          case "i":
+            return "î";
+          case "I":
+            return "Î";
+          default:
+            cara_2_octet[0] = "false";
+        }
+
+        break;
+
+      case "ffffffc1":
+        cara = hexaToString(Integer.toHexString(hexa_2[i + 1]), new byte[]{}, i, new String[]{""});
+
+        cara_2_octet[0] = "true";
+
+        switch (cara) {
+          case "e":
+            return "è";
+          case "E":
+            return "È";
+          case "u":
+            return "ù";
+          case "a":
+            return "à";
+          case "A":
+            return "À";
+          default:
+            cara_2_octet[0] = "false";
+        }
+
+        break;
+
+      case "ffffffc2":
+        cara = hexaToString(Integer.toHexString(hexa_2[i + 1]), new byte[]{}, i, new String[]{""});
+
+        cara_2_octet[0] = "true";
+
+        switch (cara) {
+          case "e":
+            return "é";
+          case "E":
+            return "É";
+          default:
+            cara_2_octet[0] = "false";
+        }
+
+        break;
+
+      case "ffffffcb":
+        cara = hexaToString(Integer.toHexString(hexa_2[i + 1]), new byte[]{}, i, new String[]{""});
+
+        cara_2_octet[0] = "true";
+
+        switch (cara) {
+          case "c":
+            return "ç";
+          case "C":
+            return "Ç";
+          default:
+            cara_2_octet[0] = "false";
+        }
+
+        break;
+
+      case "ffffffc8":
+        cara = hexaToString(Integer.toHexString(hexa_2[i + 1]), new byte[]{}, i, new String[]{""});
+
+        cara_2_octet[0] = "true";
+
+        switch (cara) {
+          case "i":
+            return "ï";
+          case "o":
+            return "ö";
+          default:
+            cara_2_octet[0] = "false";
+        }
+
+        break;
+
     }
     //System.out.println(">" + hexa);
-    return /*" "*/ "(" + hexa + ")";
+    return /*" "*/ "XXX(" + hexa + ")";
   }
 
   /**

@@ -1,6 +1,8 @@
 package com.studioequipe.subtitlefile.file;
 
+import com.studioequipe.subtitlefile.ISousTitre;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -8,6 +10,9 @@ import java.io.File;
  */
 public class XMLPNG {
 
-  public XMLPNG(File fichier) {
+  public XMLPNG(File fichier) throws FileNotFoundException {
+    if (!fichier.exists()) {
+      throw new FileNotFoundException();
+    }
   }
 }

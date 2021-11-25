@@ -27,7 +27,9 @@ public abstract class ISousTitre {
    *
    * @return
    */
-  public abstract SousTitre getSousTitre();
+  public SousTitre getSousTitre() {
+    return this.sous_titre;
+  }
 
   /**
    * Sauve les sous-titres dans un fichier.
