@@ -19,17 +19,17 @@ public class Main {
     SousTitre sous_titre_1;
 
     try {
-      /*STLEBU stl = new STLEBU(new File("/Users/mp-dailies/Desktop/0001154343_737695_MONSTERSOFMAN.stl"));
+      STLEBU stl = new STLEBU(new File("/Users/mp-dailies/Desktop/018FK3.stl"));
 
       sous_titre_1 = stl.getSousTitre();
 
       ArrayList<Ligne> texte = sous_titre_1.getAllLigne();
 
       for (int i = 0; i < texte.size(); i++) {
-        //System.out.println(" > " + texte.get(i).getTimecodeIn() + "\t" + texte.get(i).getTimecodeOut() + "\t" + texte.get(i).getTexte());
+        System.out.println((i + 1) + " > " + texte.get(i).getTimecodeIn() + "\t" + texte.get(i).getTimecodeOut() + "\t" + texte.get(i).getPositionHorizontale() + "\t" + texte.get(i).getPositionVerticale() + "\t" + texte.get(i).getTexte() + "\t" + texte.get(i).getTexte().length());
       }
-       */
- /*
+
+      /*
       SRT srt = new SRT(sous_titre);
       srt.save(new File("/Users/mp-dailies/Desktop/0001154343_737695_MONSTERSOFMAN_output.srt"));
 
@@ -40,11 +40,9 @@ public class Main {
       EDLPNG edl = new EDLPNG(sous_titre_1);
       edl.save(new File("/Users/mp-dailies/Desktop/EDL/0001154343_737695_MONSTERSOFMAN_output.edl"));
        */
-
-      SRT srt_full = new SRT(new File("/Users/mp-dailies/Desktop/ST/0001154343_737695_MONSTERSOFMAN.srt"), "25");
+      //SRT srt_full = new SRT(new File("/Users/mp-dailies/Desktop/ST/0001154343_737695_MONSTERSOFMAN.srt"), "25");
       //srt_full.getSousTitre().setFramerate("25");
-
-      SRT srt_partiel = new SRT(new File("/Users/mp-dailies/Desktop/ST/0001154343_737695_MONSTERSOFMAN_partiel.srt"), "25");
+      //SRT srt_partiel = new SRT(new File("/Users/mp-dailies/Desktop/ST/0001154343_737695_MONSTERSOFMAN_partiel.srt"), "25");
       //srt_partiel.getSousTitre().setFramerate("25");
 
       /*ArrayList<Ligne> st_partiel = srt_partiel.getSousTitre().getAllLigne();
@@ -64,13 +62,12 @@ public class Main {
           System.out.println(nb + " : Overlap de soust-titre à : " + in_partiel + " - " + in_partiel);
         }
       }*/
-      ArrayList<Message> liste_message = srt_partiel.getSousTitre().overlap(srt_full.getSousTitre());
+ /*ArrayList<Message> liste_message = srt_partiel.getSousTitre().overlap(srt_full.getSousTitre());
 
       for (int i = 0; i < liste_message.size(); i++) {
         Message m = liste_message.get(i);
         System.out.println(m.timecode_in + " - " + m.timecode_out + " : " + m.texte);
-      }
-
+      }*/
       // Vérifier que 2 sous-titres/lignes de deux fichiers différents ne se supperpose pas (cas PFR+SME par exemple).
       // Offset +/- de tous les sous-titres = calage --> Subtitle Edit
       // Confo 24 à 25. --> Subtitle Edit

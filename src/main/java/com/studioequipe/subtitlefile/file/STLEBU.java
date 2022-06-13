@@ -41,11 +41,11 @@ public class STLEBU extends ISousTitre {
     FileInputStream in = null;
     PrintWriter out = null;
 
-    boolean afficher = false;
+    boolean afficher = true;
 
     try {
       in = new FileInputStream(fichier);
-      out = new PrintWriter(new File("/Users/mp-dailies/Desktop/0001154343_737695_MONSTERSOFMAN_.txt"));
+      out = new PrintWriter(new File("/Users/mp-dailies/Desktop/" + fichier.getName().replace(".stl", ".txt")));
       int c;
 
       // CPN :
@@ -263,13 +263,16 @@ public class STLEBU extends ISousTitre {
         affichage += timecode_out + "\t";
         ligne.setTimecodeOut(timecode_out);
 
-        affichage += hexaToVP(in.readNBytes(1)) + "\t";
+        String position_verticale = hexaToVP(in.readNBytes(1));
+        affichage += position_verticale + "\t";
 
-        String position = hexaToJC(in.readNBytes(1));
+        ligne.setPositionVerticale(position_verticale);
 
-        ligne.setPosition(position);
+        String position_horizontale = hexaToJC(in.readNBytes(1));
 
-        affichage += position + "\t";
+        ligne.setPositionHorizontale(position_horizontale);
+
+        affichage += position_horizontale + "\t";
         affichage += hexaToCF(in.readNBytes(1)) + "\t";
 
         String texte = hexaToTF(in.readNBytes(112));
@@ -361,10 +364,11 @@ public class STLEBU extends ISousTitre {
   }
 
   private static String hexaToVP(byte[] a) {
+    //System.out.println("VP : " + a[0]);
     switch (hexaArraytoString(a)) {
 
     }
-    return hexaArraytoString(a);
+    return /*hexaArraytoString(a)*/ "" + a[0];
   }
 
   private static String hexaToJC(byte[] a) {

@@ -111,7 +111,7 @@ public class EDLPNG extends ISousTitre {
 
           String texte = color.next();
 
-          int position_x = positionX(1920, texte, liste_ligne.get(i).getPosition(), image, font);
+          int position_x = positionX(1920, texte, liste_ligne.get(i).getPositionHorizontale(), image, font);
           //int a = metrics.getHeight() + metrics.getAscent();
 
           ip.setColor(Color.BLACK);
@@ -129,7 +129,7 @@ public class EDLPNG extends ISousTitre {
           ip.setColor(Color.BLACK); // Par-défaut.
           FontMetrics metrics = image.getBufferedImage().getGraphics().getFontMetrics(font);
 
-          int position_x = positionX(1920, liste_ligne.get(i).getTexte(), liste_ligne.get(i).getPosition(), image, font);
+          int position_x = positionX(1920, liste_ligne.get(i).getTexte(), liste_ligne.get(i).getPositionHorizontale(), image, font);
 
           ip.drawString(liste_ligne.get(i).getTexte(), position_x, 1000);
         }

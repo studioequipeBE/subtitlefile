@@ -152,8 +152,8 @@ public class SRT extends ISousTitre {
   }
 
   private String position(Ligne ligne) {
-    System.out.println(ligne.getPosition());
-    switch (ligne.getPosition()) {
+    System.out.println(ligne.getPositionHorizontale());
+    switch (ligne.getPositionHorizontale()) {
       case "center":
         return "";
       case "left":

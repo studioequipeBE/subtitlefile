@@ -15,7 +15,12 @@ public class Ligne {
   /**
    * Si le texte est à gauche, droite ou centre.
    */
-  private String position;
+  private String position_horizontale;
+
+  /**
+   * Si le texte est à gauche, droite ou centre.
+   */
+  private String position_verticale;
 
   /**
    * Quand commence le sous-titre.
@@ -48,13 +53,17 @@ public class Ligne {
    * @param timecode_out
    * @param position
    */
-  public Ligne(String texte, String timecode_in, String timecode_out, String position) {
+  public Ligne(String texte, String timecode_in, String timecode_out, String position_horizontale) {
     this.texte = texte;
-    this.position = position;
+    this.position_horizontale = position_horizontale;
   }
 
-  public String getPosition() {
-    return position;
+  public String getPositionHorizontale() {
+    return position_horizontale;
+  }
+
+  public String getPositionVerticale() {
+    return position_verticale;
   }
 
   public String getTexte() {
@@ -69,8 +78,12 @@ public class Ligne {
     return timecode_out;
   }
 
-  public void setPosition(String position) {
-    this.position = position;
+  public void setPositionHorizontale(String position_horizontale) {
+    this.position_horizontale = position_horizontale;
+  }
+
+  public void setPositionVerticale(String position_verticale) {
+    this.position_verticale = position_verticale;
   }
 
   public void setTexte(String texte) {

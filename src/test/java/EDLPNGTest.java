@@ -58,7 +58,7 @@ public class EDLPNGTest {
   @Test
   public void loadTest() {
     // Importer un fichier qui n'existe pas.
-    assertThrows(IOException.class, () -> {
+    assertThrows(Exception.class, () -> {
       EDLPNG edl = new EDLPNG(null);
     });
 
